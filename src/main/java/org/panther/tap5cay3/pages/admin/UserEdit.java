@@ -53,7 +53,4 @@ public class UserEdit {
 		return userId;
 	}
 
-	public Object onEventFromCancel()	{
-		return Index.class;
-	}
 }

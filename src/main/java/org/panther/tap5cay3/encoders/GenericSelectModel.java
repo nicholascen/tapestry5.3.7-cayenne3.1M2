@@ -11,7 +11,7 @@ import org.apache.tapestry5.internal.OptionModelImpl;
 import org.apache.tapestry5.ioc.services.PropertyAccess;
 import org.apache.tapestry5.util.AbstractSelectModel;
 
-public class GenericSelectionModel<T> extends AbstractSelectModel {
+public class GenericSelectModel<T> extends AbstractSelectModel {
 
        private String labelField;
 
@@ -19,7 +19,7 @@ public class GenericSelectionModel<T> extends AbstractSelectModel {
 
        private final PropertyAccess adapter;
 
-       public GenericSelectionModel(List<T> list, String labelField, PropertyAccess adapter) {
+       public GenericSelectModel(List<T> list, String labelField, PropertyAccess adapter) {
                this.labelField = labelField;
                this.list = list;
                this.adapter = adapter;

@@ -1,0 +1,56 @@
+<html t:type="layout" title="Edit RoleAssignment"
+	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" xmlns:p="tapestry:parameter">
+
+<div class="itemheading">
+<h2>${pageHeading}</h2>
+</div>
+
+<t:form t:id="editForm" context="roleAssignment" class="form-inline">
+	<t:errors/>
+
+	<table class="detail-table">
+
+		<tr>
+			<th><t:label for="description"/></th>
+			<td>
+				<t:textArea t:id="description" validate="required,max=50"
+					rows="1" cols="50" value="description"
+					style="width: 40em"/>
+			</td>
+		</tr>
+		<tr>
+			<th><t:label for="userSelection"/></th>
+			<td colspan="1"><t:select t:id="userSelection" value="user" t:blankLabel="-Select-" t:blankOption="always"
+						model="userSelectModel" /> 
+			</td>
+		</tr>
+		<tr>
+			<th><t:label for="roleSelection"/></th>
+			<td colspan="1"><t:select t:id="roleSelection" value="role" t:blankLabel="-Select-" t:blankOption="always"
+						model="roleSelectModel" /> 
+			</td>
+		</tr>
+		<tr>
+			<th><t:label for="effectiveDate"/></th>
+			<td>
+				<t:datefield t:id="effectiveDate" value="effectiveDate"/>
+			</td>
+		</tr>
+		<tr>
+			<th><t:label for="expirationDate"/></th>
+			<td>
+				<t:datefield t:id="expirationDate" value="expirationDate"/>
+			</td>
+		</tr>
+		<tr>
+			<td class="controls">
+				<t:submit value="Save"/>
+				<t:pageLink page="roAssEditableGrid" context="roleAssignment"
+					class="cancel">Cancel</t:pageLink>
+			</td>
+		</tr>
+	</table>
+
+</t:form>
+
+</html>

@@ -1,0 +1,78 @@
+<html t:type="layout" title="Tapestry5-hotel-booking Sign In"
+      t:pageTitle="Register"
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
+      xmlns:p="tapestry:parameter">
+
+	<form class="full-form" t:id="registerForm" >
+		<t:errors/>
+		<table>
+			<tr>
+				<th>
+					<label t:type="label" t:for="firstName">First Name:</label>
+				</th>
+				<td>
+					<input t:type="textfield" t:id="firstName"/>
+				</td>	
+			</tr>
+			<tr>
+				<th>
+					<label t:type="label" t:for="lastName">Last Name:</label>
+				</th>
+				<td>
+					<input t:type="textfield" t:id="lastName"/>
+				</td>	
+			</tr>
+			<tr>
+				<th>
+					<label t:type="label" t:for="dateOfBirth">Birthday:</label>
+				</th>
+				<td>
+					<input t:type="datefield" t:id="dateOfBirth"/>
+				</td>	
+			</tr>
+			
+			<tr>
+				<th>
+					<label t:type="label" t:for="loginEmail">Login/Email:</label>
+				</th>
+				<td>
+					<input t:type="textfield" t:id="loginEmail"/>
+				</td>	
+			</tr>
+			<tr>
+				<th>
+					<label t:type="label" t:for="password">Password:</label>
+				</th>
+				<td>
+					<input t:type="passwordField" t:id="password"/>
+				</td>	
+			</tr>
+			<tr>
+				<th>
+					<label t:type="label" t:for="verifyPassword">Verify password:</label>
+				</th>
+				<td>
+					<input t:type="passwordField" t:id="verifyPassword"/>
+				</td>	
+			</tr>
+ 			<tr> 
+     			<th><label t:type="label" t:for="fcaptcha">Enter text displayed below</label></th> 
+    			<td> 
+     				<t:kaptchafield image="kaptcha" t:id="fcaptcha" /> 
+     			</td>  			 
+     		</tr> 
+   				<tr> 
+     			<th></th> 
+     			<td>
+     				<t:kaptchaimage t:id="kaptcha" style="float:left;"/> 
+     			</td>  			 
+     		</tr> 
+		</table>
+    	
+		<div class="form-submit">
+			<input type="submit" value="Register" />
+		</div>
+		<div class="member">Already a member ? <t:pagelink page="SignIn">Login now!</t:pagelink></div>
+	</form>
+
+</html>

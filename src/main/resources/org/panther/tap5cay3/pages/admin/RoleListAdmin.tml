@@ -1,0 +1,34 @@
+<html t:type="layout" title="Role List Admin"
+	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+      xmlns:p="tapestry:parameter">
+	<div id="section">
+		<t:zone t:id="viewZone"/>
+		<t:block id="roleDetailBlock">
+			<h2>${detailRole.name} ${detailRole.enabled}</h2>
+				<ul style="padding-left: 20px">
+					<li>Identifier: ${detailRole.id}</li>
+					<li>Description: ${detailRole.description}</li>
+				</ul>
+		</t:block>
+		<t:grid t:id="grid" t:source="roles" t:model="roleModel" 
+				t:reorder="name,description"
+				t:rowsPerPage="5"
+				t:add="delete,view"
+				exclude="snapshotVersion,persistenceState,id,roleAssignment"
+				empty="block:rolesNotFound" row="role">
+			<p:nameCell>	<!-- 7/7/2013 - the column name from the model must match for this instruction to be carried out -->
+				<t:pagelink page="admin/roleedit" context="role.id">${role.name}</t:pagelink>
+        	</p:nameCell>
+			<p:deleteCell>
+				<t:actionlink t:id="delete" context="role.id">Delete</t:actionlink>
+        	</p:deleteCell>
+        	<p:viewCell>
+				<t:actionlink t:id="view" zone="viewZone" context="role.id">View</t:actionlink>
+        	</p:viewCell>
+        	
+		</t:grid>
+		<t:block id="rolesNotFound">No Roles Found</t:block>
+		<br/>
+		<t:pagelink page="admin/roleEdit" context="0">Create a New Role</t:pagelink>
+	</div>
+</html>

@@ -1,0 +1,26 @@
+<html t:type="layout" title="Edit RoleAssignment"
+	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" xmlns:p="tapestry:parameter">
+	<h1>Update Role Assignment</h1>
+	<div id="section">
+		<t:beaneditform t:id="form" t:object="roleAssignment"
+			t:model="roleAssignmentModel"
+			t:encoder="roleAssignmentEncoder">	
+		
+			<p:user>
+				<t:label for="user" />
+				<t:select t:id="user" t:model="usersGenericSelectModel"  
+					t:value="roleAssignment.user"  />
+			</p:user>
+			
+			<p:role>
+				<t:label for="role" />
+				<t:select t:id="role" t:model="rolesGenericSelectModel" 
+					t:value="roleAssignment.role"  />
+			</p:role>
+			
+			submitLabel="Save"
+			cancel="true">
+
+		</t:beaneditform>
+	</div>
+</html>

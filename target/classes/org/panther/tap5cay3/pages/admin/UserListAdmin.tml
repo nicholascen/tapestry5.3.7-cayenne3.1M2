@@ -1,0 +1,38 @@
+<html t:type="layout" title="User List Admin"
+	xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd" xmlns:p="tapestry:parameter">
+
+	<t:yourRoles />
+
+	<div id="section">
+		<t:zone t:id="viewZone" />
+		<t:block id="userDetails">
+			<h2>${detailUser.firstName} ${detailUser.lastName}</h2>
+			<ul style="padding-left: 20px">
+				<li>Identifier: ${detailUser.id}</li>
+				<li>Login/Email: ${detailUser.loginEmail}</li>
+				<li>Birthday: ${detailUser.dateofbirth}</li>
+			</ul>
+		</t:block>
+		<t:grid t:id="grid" t:source="users" t:model="userModel"
+			t:reorder="firstName,lastName,loginEmail"
+			t:exclude="snapshotVersion,persistenceState,password,locked,roleAssignment"
+			t:rowsPerPage="5"
+			t:add="delete,view"
+			empty="block:usersNotFound" row="user">
+			<p:lastNameCell>	<!-- 7/7/2013 - the column name from the model must match for this instruction 
+					to be carried out -->
+				<t:pagelink page="admin/useredit" context="user.id">${user.lastName}</t:pagelink>
+			</p:lastNameCell>
+			<p:deleteCell>
+				<t:actionlink t:id="delete" context="user.id">Delete</t:actionlink>
+			</p:deleteCell>
+			<p:viewCell>
+				<t:actionlink t:id="view" zone="viewZone" context="user.id">View</t:actionlink>
+			</p:viewCell>
+
+		</t:grid>
+		<t:block id="usersNotFound">No Users Found</t:block>
+		<br />
+		<t:pagelink page="admin/useredit" context="0">Create new user</t:pagelink>
+	</div>
+</html>

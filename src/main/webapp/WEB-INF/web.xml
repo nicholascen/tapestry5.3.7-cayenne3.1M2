@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE web-app
+        PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+        "http://java.sun.com/dtd/web-app_2_3.dtd">
+        
+<!-- 	http://apache-tapestry-mailing-list-archives.1045711.n5.nabble.com/Change-default-session-timeout-interval-td5594150.html -->
+
+<web-app>
+
+
+
+    <display-name>tap5cay3 Tapestry 5 Application</display-name>
+    
+        
+    <context-param>
+        <!-- The only significant configuration for Tapestry 5, this informs Tapestry
+of where to look for pages, components and mixins. -->
+        <param-name>tapestry.app-package</param-name>
+        <param-value>org.panther.tap5cay3</param-value>
+    </context-param>
+    
+    <context-param>
+        <param-name>tapestry.execution-mode</param-name>
+        <param-value>development</param-value>
+    </context-param>
+    
+    <!--
+    Specify some additional Modules for two different execution
+    modes: development and qa.
+    Remember that the default execution mode is production
+    -->
+    <context-param>
+        <param-name>tapestry.development-modules</param-name>
+        <param-value>
+            org.panther.tap5cay3.services.DevelopmentModule
+        </param-value>
+    </context-param>
+    <context-param>
+        <param-name>tapestry.qa-modules</param-name>
+        <param-value>
+            org.panther.tap5cay3.services.QaModule
+        </param-value>
+    </context-param>
+    
+ 
+    <filter>
+        <filter-name>app</filter-name>
+<!--         <filter-class>org.apache.tapestry5.spring.TapestrySpringFilter</filter-class> -->
+        <filter-class>org.apache.tapestry5.TapestryFilter</filter-class>
+        
+    </filter>
+
+<!--      <filter> -->
+<!--         <filter-name>tapestry5cayenne</filter-name> -->
+<!--         <filter-class>com.googlecode.tapestry5cayenne.services.CayenneRequestFilter</filter-class>        -->
+<!--     </filter> -->
+    
+	<filter>
+		<filter-name>Cayenne Filter</filter-name>
+        <filter-class>org.apache.cayenne.configuration.web.CayenneFilter</filter-class>
+<!--	@@@@	Important 7/5/2013 - JCen	-->
+<!-- 	Step 2 - please REMEMBER to tell cayenne the name of the project context file "cayenne-tap5cay3act5.xml"!!! -->	    
+        <init-param>
+				<param-name>configuration-location</param-name>
+				<param-value>cayenne-tap5cay3.xml</param-value>
+		</init-param>
+        
+	</filter>
+	<filter-mapping>
+		<filter-name>Cayenne Filter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+    <filter-mapping>
+        <filter-name>app</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+    
+
+    <!--   	The session timeout is strictly a function of a servlet container you are using.  -->
+<!-- 	Most of them listen to web.xml session-timeout property in session-config section. Look up web.xml syntax on the web.  -->
+<!-- 	This has nothing to do with tapestry.   -->
+<!--     @@@	7/16/2013 - session timeout -->
+	<session-config>
+		<session-timeout>120</session-timeout>
+	</session-config>
+	
+</web-app>
+
+
+    
+      

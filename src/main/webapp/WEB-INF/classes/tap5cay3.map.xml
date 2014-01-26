@@ -1,0 +1,708 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data-map xmlns="http://cayenne.apache.org/schema/3.0/modelMap"
+	 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	 xsi:schemaLocation="http://cayenne.apache.org/schema/3.0/modelMap http://cayenne.apache.org/schema/3.0/modelMap.xsd"
+	 project-version="6">
+	<property name="defaultPackage" value="org.panther.tap5cay3.model"/>
+	<property name="defaultSchema" value="jboss"/>
+	<db-entity name="BOOKING" schema="jboss">
+		<db-attribute name="beds" type="SMALLINT"/>
+		<db-attribute name="checkin_date" type="DATE" isMandatory="true"/>
+		<db-attribute name="checkout_date" type="DATE"/>
+		<db-attribute name="creation_date" type="DATE"/>
+		<db-attribute name="credit_card_expiry_month" type="SMALLINT"/>
+		<db-attribute name="credit_card_expiry_year" type="SMALLINT"/>
+		<db-attribute name="credit_card_number" type="VARCHAR" length="20"/>
+		<db-attribute name="credit_card_owner_name" type="VARCHAR" length="50"/>
+		<db-attribute name="credit_card_type_id" type="SMALLINT"/>
+		<db-attribute name="hotel_id" type="BIGINT"/>
+		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="smoking" type="BOOLEAN"/>
+		<db-attribute name="user_id" type="BIGINT"/>
+	</db-entity>
+	<db-entity name="CLASSIFICATION" catalog="jboss">
+		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true" length="10"/>
+		<db-attribute name="label" type="VARCHAR" isMandatory="true" length="500"/>
+		<db-attribute name="parent_id" type="INTEGER" length="10"/>
+		<db-attribute name="version" type="INTEGER" length="10"/>
+	</db-entity>
+	<db-entity name="CLASS_PACKAGE" schema="jboss">
+		<db-attribute name="description" type="VARCHAR" length="500"/>
+		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="name" type="VARCHAR" isMandatory="true" length="100"/>
+	</db-entity>
+	<db-entity name="COMPONENT" schema="jboss">
+		<db-attribute name="calculation_sequence" type="INTEGER"/>
+		<db-attribute name="display_sequence" type="INTEGER"/>
+		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="name" type="VARCHAR" isMandatory="true" length="100"/>
+	</db-entity>
+	<db-entity name="COMPONENT_FACTOR" schema="jboss">
+		<db-attribute name="component_id" type="INTEGER" isMandatory="true"/>
+		<db-attribute name="factor_id" type="INTEGER" isMandatory="true"/>
+		<db-attribute name="factor_sequence" type="INTEGER" isMandatory="true"/>
+		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="operator_id" type="INTEGER" isMandatory="true"/>
+	</db-entity>
+	<db-entity name="COMPONENT_MEMBER" schema="jboss">
+		<db-attribute name="component_id" type="INTEGER" isMandatory="true"/>
+		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="member_component_id" type="INTEGER" isMandatory="true"/>
+		<db-attribute name="member_sequence" type="INTEGER" isMandatory="true"/>
+		<db-attribute name="membership_type_id" type="INTEGER" isMandatory="true"/>
+	</db-entity>
+	<db-entity name="CREDIT_CARD_TYPE" schema="jboss">
+		<db-attribute name="code" type="VARCHAR" isMandatory="true" length="10"/>
+		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="name" type="VARCHAR" isMandatory="true" length="20"/>
+	</db-entity>
+	<db-entity name="DATA_TYPE" schema="jboss">
+		<db-attribute name="description" type="VARCHAR" length="500"/>
+		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="name" type="VARCHAR" isMandatory="true" length="100"/>
+	</db-entity>
+	<db-entity name="ENTRY" schema="jboss">
+		<db-attribute name="demonstration_url" type="VARCHAR" length="1024"/>
+		<db-attribute name="description" type="VARCHAR" isMandatory="true" length="4096"/>
+		<db-attribute name="documentation_url" type="VARCHAR" length="1024"/>
+		<db-attribute name="enabled" type="BIT" isMandatory="true"/>
+		<db-attribute name="entry_type_id" type="INTEGER" isMandatory="true"/>
+		<db-attribute name="first_available" type="DATE"/>
+		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="license_type_id" type="INTEGER"/>
+		<db-attribute name="name" type="VARCHAR" isMandatory="true" length="100"/>
+		<db-attribute name="parent_id" type="INTEGER"/>
+		<db-attribute name="since_id" type="INTEGER"/>
+		<db-attribute name="source_type_id" type="INTEGER"/>
+		<db-attribute name="until_id" type="INTEGER"/>
+	</db-entity>
+	<db-entity name="ENTRY_TYPE" schema="jboss">
+		<db-attribute name="css_class" type="VARCHAR" length="500"/>
+		<db-attribute name="description" type="VARCHAR" isMandatory="true" length="500"/>
+		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="is_container" type="BOOLEAN" isMandatory="true"/>
+		<db-attribute name="name" type="VARCHAR" isMandatory="true" length="100"/>
+		<db-attribute name="name_plural" type="VARCHAR" length="100"/>
+		<db-attribute name="sort_by" type="SMALLINT"/>
+	</db-entity>
+	<db-entity name="FACTOR" schema="jboss">
+		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="name" type="VARCHAR" isMandatory="true" length="100"/>
+	</db-entity>
+	<db-entity name="FACTOR_MEMBER" schema="jboss">
+		<db-attribute name="factor_id" type="INTEGER" isMandatory="true"/>
+		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="member_factor_id" type="INTEGER" isMandatory="true"/>
+		<db-attribute name="member_sequence" type="INTEGER" isMandatory="true"/>
+		<db-attribute name="membership_type_id" type="INTEGER" isMandatory="true"/>
+	</db-entity>
+	<db-entity name="HOTEL" schema="jboss">
+		<db-attribute name="address" type="VARCHAR" isMandatory="true" length="100"/>
+		<db-attribute name="city" type="VARCHAR" isMandatory="true" length="50"/>
+		<db-attribute name="country" type="VARCHAR" isMandatory="true" length="50"/>
+		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="name" type="VARCHAR" isMandatory="true" length="50"/>
+		<db-attribute name="price" type="DECIMAL"/>
+		<db-attribute name="stars" type="INTEGER"/>
+		<db-attribute name="state" type="VARCHAR" isMandatory="true" length="50"/>
+		<db-attribute name="zip" type="VARCHAR" length="10"/>
+	</db-entity>
+	<db-entity name="LICENSE_TYPE" schema="jboss">
+		<db-attribute name="description" type="VARCHAR" length="1024"/>
+		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="name" type="VARCHAR" isMandatory="true" length="100"/>
+	</db-entity>
+	<db-entity name="MEMBERSHIP_TYPE" schema="jboss">
+		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="name" type="VARCHAR" isMandatory="true" length="100"/>
+	</db-entity>
+	<db-entity name="OBJECT_PROPERTY" schema="jboss">
+		<db-attribute name="class_property_name" type="VARCHAR" length="100"/>
+		<db-attribute name="column_name" type="VARCHAR" length="100"/>
+		<db-attribute name="data_type_id" type="INTEGER"/>
+		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="name" type="VARCHAR" isMandatory="true" length="100"/>
+		<db-attribute name="object_type_id" type="INTEGER" isMandatory="true"/>
+		<db-attribute name="referenced_object_type_id" type="INTEGER"/>
+	</db-entity>
+	<db-entity name="OBJECT_TYPE" schema="jboss">
+		<db-attribute name="class_name" type="VARCHAR" length="100"/>
+		<db-attribute name="class_package_id" type="INTEGER"/>
+		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="local_id" type="BOOLEAN"/>
+		<db-attribute name="name" type="VARCHAR" isMandatory="true" length="100"/>
+		<db-attribute name="pk_column_name" type="VARCHAR" length="100"/>
+		<db-attribute name="table_name" type="VARCHAR" length="100"/>
+	</db-entity>
+	<db-entity name="OPERATOR" schema="jboss">
+		<db-attribute name="code" type="VARCHAR" isMandatory="true" length="20"/>
+		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+	</db-entity>
+	<db-entity name="ROLE" schema="jboss">
+		<db-attribute name="description" type="VARCHAR" length="500"/>
+		<db-attribute name="enabled" type="BOOLEAN"/>
+		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="name" type="VARCHAR" isMandatory="true" length="50"/>
+	</db-entity>
+	<db-entity name="ROLE_ASSIGNMENT" schema="jboss">
+		<db-attribute name="description" type="VARCHAR" length="1000"/>
+		<db-attribute name="effective_date" type="DATE"/>
+		<db-attribute name="expiration_date" type="DATE"/>
+		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="role_id" type="INTEGER" isMandatory="true"/>
+		<db-attribute name="user_id" type="INTEGER" isMandatory="true"/>
+	</db-entity>
+	<db-entity name="SETTING" schema="jboss">
+		<db-attribute name="description" type="VARCHAR" isMandatory="true" length="1000"/>
+		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="name" type="VARCHAR" length="100"/>
+		<db-attribute name="value" type="VARCHAR" length="500"/>
+	</db-entity>
+	<db-entity name="SOURCE_TYPE" schema="jboss">
+		<db-attribute name="description" type="VARCHAR" length="1000"/>
+		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="name" type="VARCHAR" isMandatory="true" length="100"/>
+		<db-attribute name="name_plural" type="VARCHAR" length="100"/>
+		<db-attribute name="sort_by" type="SMALLINT"/>
+	</db-entity>
+	<db-entity name="TREE_NODE_DEFINITION" schema="jboss">
+		<db-attribute name="class_name" type="VARCHAR" length="100"/>
+		<db-attribute name="class_package_id" type="INTEGER"/>
+		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="name" type="VARCHAR" isMandatory="true" length="100"/>
+		<db-attribute name="tree_structure_id" type="INTEGER" isMandatory="true"/>
+	</db-entity>
+	<db-entity name="TREE_NODE_IMPLEMENTATION" schema="jboss">
+		<db-attribute name="description" type="VARCHAR" length="500"/>
+		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="object_type_id" type="INTEGER" isMandatory="true"/>
+		<db-attribute name="sequence" type="INTEGER" isMandatory="true"/>
+		<db-attribute name="tree_node_definition_id" type="INTEGER" isMandatory="true"/>
+	</db-entity>
+	<db-entity name="TREE_NODE_MEMBER" schema="jboss">
+		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="leader_matching_object_property_id" type="INTEGER"/>
+		<db-attribute name="leader_tree_node_implementation_id" type="INTEGER"/>
+		<db-attribute name="member_matching_object_property_id" type="INTEGER"/>
+		<db-attribute name="member_tree_node_implementation_id" type="INTEGER"/>
+		<db-attribute name="navigation_object_type_id" type="INTEGER"/>
+		<db-attribute name="sequence" type="INTEGER"/>
+	</db-entity>
+	<db-entity name="TREE_STRUCTURE" schema="jboss">
+		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="name" type="VARCHAR" isMandatory="true" length="100"/>
+		<db-attribute name="root_object_type_id" type="INTEGER"/>
+	</db-entity>
+	<db-entity name="USER" schema="jboss">
+		<db-attribute name="date_of_birth" type="DATE" isMandatory="true"/>
+		<db-attribute name="first_name" type="VARCHAR" isMandatory="true" length="25"/>
+		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="last_name" type="VARCHAR" isMandatory="true" length="25"/>
+		<db-attribute name="locked" type="BOOLEAN"/>
+		<db-attribute name="login_email" type="VARCHAR" isMandatory="true" length="40"/>
+		<db-attribute name="password" type="VARCHAR" isMandatory="true" length="20"/>
+	</db-entity>
+	<db-entity name="VERSION" schema="jboss">
+		<db-attribute name="description" type="VARCHAR" length="1000"/>
+		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="name" type="VARCHAR" isMandatory="true" length="100"/>
+		<db-attribute name="released" type="DATE"/>
+	</db-entity>
+	<db-entity name="WIDGET_TYPE" schema="jboss">
+		<db-attribute name="description" type="VARCHAR" length="500"/>
+		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="license_type_id" type="INTEGER"/>
+		<db-attribute name="name" type="VARCHAR" isMandatory="true" length="50"/>
+		<db-attribute name="source_type_id" type="INTEGER"/>
+	</db-entity>
+	<obj-entity name="Booking" className="org.panther.tap5cay3.model.Booking" dbEntityName="BOOKING">
+		<obj-attribute name="beds" type="java.lang.Short" db-attribute-path="beds"/>
+		<obj-attribute name="checkinDate" type="java.util.Date" db-attribute-path="checkin_date"/>
+		<obj-attribute name="checkoutDate" type="java.util.Date" db-attribute-path="checkout_date"/>
+		<obj-attribute name="creationDate" type="java.util.Date" db-attribute-path="creation_date"/>
+		<obj-attribute name="creditCardExpiryMonth" type="java.lang.Short" db-attribute-path="credit_card_expiry_month"/>
+		<obj-attribute name="creditCardExpiryYear" type="java.lang.Short" db-attribute-path="credit_card_expiry_year"/>
+		<obj-attribute name="creditCardNumber" type="java.lang.String" db-attribute-path="credit_card_number"/>
+		<obj-attribute name="creditCardOwnerName" type="java.lang.String" db-attribute-path="credit_card_owner_name"/>
+		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="id"/>
+		<obj-attribute name="smoking" type="java.lang.Boolean" db-attribute-path="smoking"/>
+	</obj-entity>
+	<obj-entity name="ClassPackage" className="org.panther.tap5cay3.model.ClassPackage" dbEntityName="CLASS_PACKAGE">
+		<obj-attribute name="description" type="java.lang.String" db-attribute-path="description"/>
+		<obj-attribute name="name" type="java.lang.String" db-attribute-path="name"/>
+	</obj-entity>
+	<obj-entity name="Classification" className="org.panther.tap5cay3.model.Classification" dbEntityName="CLASSIFICATION">
+		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="id"/>
+		<obj-attribute name="label" type="java.lang.String" db-attribute-path="label"/>
+		<obj-attribute name="version" type="java.lang.Integer" db-attribute-path="version"/>
+	</obj-entity>
+	<obj-entity name="Component" className="org.panther.tap5cay3.model.Component" dbEntityName="COMPONENT">
+		<obj-attribute name="calculationSequence" type="java.lang.Integer" db-attribute-path="calculation_sequence"/>
+		<obj-attribute name="displaySequence" type="java.lang.Integer" db-attribute-path="display_sequence"/>
+		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="id"/>
+		<obj-attribute name="name" type="java.lang.String" db-attribute-path="name"/>
+	</obj-entity>
+	<obj-entity name="ComponentFactor" className="org.panther.tap5cay3.model.ComponentFactor" dbEntityName="COMPONENT_FACTOR">
+		<obj-attribute name="factorSequence" type="java.lang.Integer" db-attribute-path="factor_sequence"/>
+		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="id"/>
+	</obj-entity>
+	<obj-entity name="ComponentMember" className="org.panther.tap5cay3.model.ComponentMember" dbEntityName="COMPONENT_MEMBER">
+		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="id"/>
+		<obj-attribute name="memberSequence" type="java.lang.Integer" db-attribute-path="member_sequence"/>
+	</obj-entity>
+	<obj-entity name="CreditCardType" className="org.panther.tap5cay3.model.CreditCardType" dbEntityName="CREDIT_CARD_TYPE">
+		<obj-attribute name="code" type="java.lang.String" db-attribute-path="code"/>
+		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="id"/>
+		<obj-attribute name="name" type="java.lang.String" db-attribute-path="name"/>
+	</obj-entity>
+	<obj-entity name="DataType" className="org.panther.tap5cay3.model.DataType" dbEntityName="DATA_TYPE">
+		<obj-attribute name="description" type="java.lang.String" db-attribute-path="description"/>
+		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="id"/>
+		<obj-attribute name="name" type="java.lang.String" db-attribute-path="name"/>
+	</obj-entity>
+	<obj-entity name="Entry" className="org.panther.tap5cay3.model.Entry" dbEntityName="ENTRY">
+		<obj-attribute name="demonstrationUrl" type="java.lang.String" db-attribute-path="demonstration_url"/>
+		<obj-attribute name="description" type="java.lang.String" db-attribute-path="description"/>
+		<obj-attribute name="documentationUrl" type="java.lang.String" db-attribute-path="documentation_url"/>
+		<obj-attribute name="enabled" type="java.lang.Boolean" db-attribute-path="enabled"/>
+		<obj-attribute name="firstAvailable" type="java.util.Date" db-attribute-path="first_available"/>
+		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="id"/>
+		<obj-attribute name="name" type="java.lang.String" db-attribute-path="name"/>
+	</obj-entity>
+	<obj-entity name="EntryType" className="org.panther.tap5cay3.model.EntryType" dbEntityName="ENTRY_TYPE">
+		<obj-attribute name="cssClass" type="java.lang.String" db-attribute-path="css_class"/>
+		<obj-attribute name="description" type="java.lang.String" db-attribute-path="description"/>
+		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="id"/>
+		<obj-attribute name="isContainer" type="java.lang.Boolean" db-attribute-path="is_container"/>
+		<obj-attribute name="name" type="java.lang.String" db-attribute-path="name"/>
+		<obj-attribute name="namePlural" type="java.lang.String" db-attribute-path="name_plural"/>
+		<obj-attribute name="sortBy" type="java.lang.Short" db-attribute-path="sort_by"/>
+	</obj-entity>
+	<obj-entity name="Factor" className="org.panther.tap5cay3.model.Factor" dbEntityName="FACTOR">
+		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="id"/>
+		<obj-attribute name="name" type="java.lang.String" db-attribute-path="name"/>
+	</obj-entity>
+	<obj-entity name="FactorMember" className="org.panther.tap5cay3.model.FactorMember" dbEntityName="FACTOR_MEMBER">
+		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="id"/>
+		<obj-attribute name="memberSequence" type="java.lang.Integer" db-attribute-path="member_sequence"/>
+	</obj-entity>
+	<obj-entity name="Hotel" className="org.panther.tap5cay3.model.Hotel" dbEntityName="HOTEL">
+		<obj-attribute name="address" type="java.lang.String" db-attribute-path="address"/>
+		<obj-attribute name="city" type="java.lang.String" db-attribute-path="city"/>
+		<obj-attribute name="country" type="java.lang.String" db-attribute-path="country"/>
+		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="id"/>
+		<obj-attribute name="name" type="java.lang.String" db-attribute-path="name"/>
+		<obj-attribute name="price" type="java.math.BigDecimal" db-attribute-path="price"/>
+		<obj-attribute name="stars" type="java.lang.Integer" db-attribute-path="stars"/>
+		<obj-attribute name="state" type="java.lang.String" db-attribute-path="state"/>
+		<obj-attribute name="zip" type="java.lang.String" db-attribute-path="zip"/>
+	</obj-entity>
+	<obj-entity name="LicenseType" className="org.panther.tap5cay3.model.LicenseType" dbEntityName="LICENSE_TYPE">
+		<obj-attribute name="description" type="java.lang.String" db-attribute-path="description"/>
+		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="id"/>
+		<obj-attribute name="name" type="java.lang.String" db-attribute-path="name"/>
+	</obj-entity>
+	<obj-entity name="MembershipType" className="org.panther.tap5cay3.model.MembershipType" dbEntityName="MEMBERSHIP_TYPE">
+		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="id"/>
+		<obj-attribute name="name" type="java.lang.String" db-attribute-path="name"/>
+	</obj-entity>
+	<obj-entity name="ObjectProperty" className="org.panther.tap5cay3.model.ObjectProperty" dbEntityName="OBJECT_PROPERTY">
+		<obj-attribute name="classPropertyName" type="java.lang.String" db-attribute-path="class_property_name"/>
+		<obj-attribute name="columnName" type="java.lang.String" db-attribute-path="column_name"/>
+		<obj-attribute name="name" type="java.lang.String" db-attribute-path="name"/>
+	</obj-entity>
+	<obj-entity name="ObjectType" className="org.panther.tap5cay3.model.ObjectType" dbEntityName="OBJECT_TYPE">
+		<obj-attribute name="className" type="java.lang.String" db-attribute-path="class_name"/>
+		<obj-attribute name="localId" type="java.lang.Boolean" db-attribute-path="local_id"/>
+		<obj-attribute name="name" type="java.lang.String" db-attribute-path="name"/>
+		<obj-attribute name="pkColumnName" type="java.lang.String" db-attribute-path="pk_column_name"/>
+		<obj-attribute name="tableName" type="java.lang.String" db-attribute-path="table_name"/>
+	</obj-entity>
+	<obj-entity name="Operator" className="org.panther.tap5cay3.model.Operator" dbEntityName="OPERATOR">
+		<obj-attribute name="code" type="java.lang.String" db-attribute-path="code"/>
+		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="id"/>
+	</obj-entity>
+	<obj-entity name="Role" className="org.panther.tap5cay3.model.Role" dbEntityName="ROLE">
+		<obj-attribute name="description" type="java.lang.String" db-attribute-path="description"/>
+		<obj-attribute name="enabled" type="java.lang.Boolean" db-attribute-path="enabled"/>
+		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="id"/>
+		<obj-attribute name="name" type="java.lang.String" db-attribute-path="name"/>
+	</obj-entity>
+	<obj-entity name="RoleAssignment" className="org.panther.tap5cay3.model.RoleAssignment" dbEntityName="ROLE_ASSIGNMENT">
+		<obj-attribute name="description" type="java.lang.String" db-attribute-path="description"/>
+		<obj-attribute name="effectiveDate" type="java.util.Date" db-attribute-path="effective_date"/>
+		<obj-attribute name="expirationDate" type="java.util.Date" db-attribute-path="expiration_date"/>
+		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="id"/>
+	</obj-entity>
+	<obj-entity name="Setting" className="org.panther.tap5cay3.model.Setting" dbEntityName="SETTING">
+		<obj-attribute name="description" type="java.lang.String" db-attribute-path="description"/>
+		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="id"/>
+		<obj-attribute name="name" type="java.lang.String" db-attribute-path="name"/>
+		<obj-attribute name="value" type="java.lang.String" db-attribute-path="value"/>
+	</obj-entity>
+	<obj-entity name="SourceType" className="org.panther.tap5cay3.model.SourceType" dbEntityName="SOURCE_TYPE">
+		<obj-attribute name="description" type="java.lang.String" db-attribute-path="description"/>
+		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="id"/>
+		<obj-attribute name="name" type="java.lang.String" db-attribute-path="name"/>
+		<obj-attribute name="namePlural" type="java.lang.String" db-attribute-path="name_plural"/>
+		<obj-attribute name="sortBy" type="java.lang.Short" db-attribute-path="sort_by"/>
+	</obj-entity>
+	<obj-entity name="TreeNodeDefinition" className="org.panther.tap5cay3.model.TreeNodeDefinition" dbEntityName="TREE_NODE_DEFINITION">
+		<obj-attribute name="className" type="java.lang.String" db-attribute-path="class_name"/>
+		<obj-attribute name="name" type="java.lang.String" db-attribute-path="name"/>
+	</obj-entity>
+	<obj-entity name="TreeNodeImplementation" className="org.panther.tap5cay3.model.TreeNodeImplementation" dbEntityName="TREE_NODE_IMPLEMENTATION">
+		<obj-attribute name="description" type="java.lang.String" db-attribute-path="description"/>
+		<obj-attribute name="sequence" type="java.lang.Integer" db-attribute-path="sequence"/>
+	</obj-entity>
+	<obj-entity name="TreeNodeMember" className="org.panther.tap5cay3.model.TreeNodeMember" dbEntityName="TREE_NODE_MEMBER">
+		<obj-attribute name="sequence" type="java.lang.Integer" db-attribute-path="sequence"/>
+	</obj-entity>
+	<obj-entity name="TreeStructure" className="org.panther.tap5cay3.model.TreeStructure" dbEntityName="TREE_STRUCTURE">
+		<obj-attribute name="name" type="java.lang.String" db-attribute-path="name"/>
+		<obj-attribute name="rootObjectTypeId" type="java.lang.Integer" db-attribute-path="root_object_type_id"/>
+	</obj-entity>
+	<obj-entity name="User" className="org.panther.tap5cay3.model.User" dbEntityName="USER">
+		<obj-attribute name="dateOfBirth" type="java.util.Date" db-attribute-path="date_of_birth"/>
+		<obj-attribute name="firstName" type="java.lang.String" db-attribute-path="first_name"/>
+		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="id"/>
+		<obj-attribute name="lastName" type="java.lang.String" db-attribute-path="last_name"/>
+		<obj-attribute name="locked" type="java.lang.Boolean" db-attribute-path="locked"/>
+		<obj-attribute name="loginEmail" type="java.lang.String" db-attribute-path="login_email"/>
+		<obj-attribute name="password" type="java.lang.String" db-attribute-path="password"/>
+	</obj-entity>
+	<obj-entity name="Version" className="org.panther.tap5cay3.model.Version" dbEntityName="VERSION">
+		<obj-attribute name="description" type="java.lang.String" db-attribute-path="description"/>
+		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="id"/>
+		<obj-attribute name="name" type="java.lang.String" db-attribute-path="name"/>
+		<obj-attribute name="released" type="java.util.Date" db-attribute-path="released"/>
+	</obj-entity>
+	<obj-entity name="WidgetType" className="org.panther.tap5cay3.model.WidgetType" dbEntityName="WIDGET_TYPE">
+		<obj-attribute name="description" type="java.lang.String" db-attribute-path="description"/>
+		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="id"/>
+		<obj-attribute name="name" type="java.lang.String" db-attribute-path="name"/>
+	</obj-entity>
+	<db-relationship name="credit_card_type" source="BOOKING" target="CREDIT_CARD_TYPE" toMany="false">
+		<db-attribute-pair source="credit_card_type_id" target="id"/>
+	</db-relationship>
+	<db-relationship name="hotel" source="BOOKING" target="HOTEL" toMany="false">
+		<db-attribute-pair source="hotel_id" target="id"/>
+	</db-relationship>
+	<db-relationship name="user" source="BOOKING" target="USER" toMany="false">
+		<db-attribute-pair source="user_id" target="id"/>
+	</db-relationship>
+	<db-relationship name="classificationArray" source="CLASSIFICATION" target="CLASSIFICATION" toMany="true">
+		<db-attribute-pair source="id" target="parent_id"/>
+	</db-relationship>
+	<db-relationship name="toClassification" source="CLASSIFICATION" target="CLASSIFICATION" toMany="false">
+		<db-attribute-pair source="parent_id" target="id"/>
+	</db-relationship>
+	<db-relationship name="object_type" source="CLASS_PACKAGE" target="OBJECT_TYPE" toMany="true">
+		<db-attribute-pair source="id" target="class_package_id"/>
+	</db-relationship>
+	<db-relationship name="tree_node_definition" source="CLASS_PACKAGE" target="TREE_NODE_DEFINITION" toMany="true">
+		<db-attribute-pair source="id" target="class_package_id"/>
+	</db-relationship>
+	<db-relationship name="component_factor" source="COMPONENT" target="COMPONENT_FACTOR" toMany="true">
+		<db-attribute-pair source="id" target="component_id"/>
+	</db-relationship>
+	<db-relationship name="component_member" source="COMPONENT" target="COMPONENT_MEMBER" toMany="true">
+		<db-attribute-pair source="id" target="component_id"/>
+	</db-relationship>
+	<db-relationship name="member_component_member" source="COMPONENT" target="COMPONENT_MEMBER" toMany="true">
+		<db-attribute-pair source="id" target="member_component_id"/>
+	</db-relationship>
+	<db-relationship name="component" source="COMPONENT_FACTOR" target="COMPONENT" toMany="false">
+		<db-attribute-pair source="component_id" target="id"/>
+	</db-relationship>
+	<db-relationship name="factor" source="COMPONENT_FACTOR" target="FACTOR" toMany="false">
+		<db-attribute-pair source="factor_id" target="id"/>
+	</db-relationship>
+	<db-relationship name="operator" source="COMPONENT_FACTOR" target="OPERATOR" toMany="false">
+		<db-attribute-pair source="operator_id" target="id"/>
+	</db-relationship>
+	<db-relationship name="component" source="COMPONENT_MEMBER" target="COMPONENT" toMany="false">
+		<db-attribute-pair source="component_id" target="id"/>
+	</db-relationship>
+	<db-relationship name="member_component" source="COMPONENT_MEMBER" target="COMPONENT" toMany="false">
+		<db-attribute-pair source="member_component_id" target="id"/>
+	</db-relationship>
+	<db-relationship name="membership_type" source="COMPONENT_MEMBER" target="MEMBERSHIP_TYPE" toMany="false">
+		<db-attribute-pair source="membership_type_id" target="id"/>
+	</db-relationship>
+	<db-relationship name="booking" source="CREDIT_CARD_TYPE" target="BOOKING" toMany="true">
+		<db-attribute-pair source="id" target="credit_card_type_id"/>
+	</db-relationship>
+	<db-relationship name="object_property" source="DATA_TYPE" target="OBJECT_PROPERTY" toMany="true">
+		<db-attribute-pair source="id" target="data_type_id"/>
+	</db-relationship>
+	<db-relationship name="children" source="ENTRY" target="ENTRY" toMany="true">
+		<db-attribute-pair source="id" target="parent_id"/>
+	</db-relationship>
+	<db-relationship name="entry_type" source="ENTRY" target="ENTRY_TYPE" toMany="false">
+		<db-attribute-pair source="entry_type_id" target="id"/>
+	</db-relationship>
+	<db-relationship name="license_type" source="ENTRY" target="LICENSE_TYPE" toMany="false">
+		<db-attribute-pair source="license_type_id" target="id"/>
+	</db-relationship>
+	<db-relationship name="parent" source="ENTRY" target="ENTRY" toMany="false">
+		<db-attribute-pair source="parent_id" target="id"/>
+	</db-relationship>
+	<db-relationship name="source_type" source="ENTRY" target="SOURCE_TYPE" toMany="false">
+		<db-attribute-pair source="source_type_id" target="id"/>
+	</db-relationship>
+	<db-relationship name="version_since" source="ENTRY" target="VERSION" toMany="false">
+		<db-attribute-pair source="since_id" target="id"/>
+	</db-relationship>
+	<db-relationship name="version_until" source="ENTRY" target="VERSION" toMany="false">
+		<db-attribute-pair source="until_id" target="id"/>
+	</db-relationship>
+	<db-relationship name="entry" source="ENTRY_TYPE" target="ENTRY" toMany="true">
+		<db-attribute-pair source="id" target="entry_type_id"/>
+	</db-relationship>
+	<db-relationship name="component_factor" source="FACTOR" target="COMPONENT_FACTOR" toMany="true">
+		<db-attribute-pair source="id" target="factor_id"/>
+	</db-relationship>
+	<db-relationship name="factor_member" source="FACTOR" target="FACTOR_MEMBER" toMany="true">
+		<db-attribute-pair source="id" target="factor_id"/>
+	</db-relationship>
+	<db-relationship name="member_factor_member" source="FACTOR" target="FACTOR_MEMBER" toMany="true">
+		<db-attribute-pair source="id" target="member_factor_id"/>
+	</db-relationship>
+	<db-relationship name="factor" source="FACTOR_MEMBER" target="FACTOR" toMany="false">
+		<db-attribute-pair source="factor_id" target="id"/>
+	</db-relationship>
+	<db-relationship name="member_factor" source="FACTOR_MEMBER" target="FACTOR" toMany="false">
+		<db-attribute-pair source="member_factor_id" target="id"/>
+	</db-relationship>
+	<db-relationship name="membership_type" source="FACTOR_MEMBER" target="MEMBERSHIP_TYPE" toMany="false">
+		<db-attribute-pair source="membership_type_id" target="id"/>
+	</db-relationship>
+	<db-relationship name="booking" source="HOTEL" target="BOOKING" toMany="true">
+		<db-attribute-pair source="id" target="hotel_id"/>
+	</db-relationship>
+	<db-relationship name="entry" source="LICENSE_TYPE" target="ENTRY" toMany="true">
+		<db-attribute-pair source="id" target="license_type_id"/>
+	</db-relationship>
+	<db-relationship name="widget_type" source="LICENSE_TYPE" target="WIDGET_TYPE" toMany="true">
+		<db-attribute-pair source="id" target="license_type_id"/>
+	</db-relationship>
+	<db-relationship name="component_member" source="MEMBERSHIP_TYPE" target="COMPONENT_MEMBER" toMany="true">
+		<db-attribute-pair source="id" target="membership_type_id"/>
+	</db-relationship>
+	<db-relationship name="factor_member" source="MEMBERSHIP_TYPE" target="FACTOR_MEMBER" toMany="true">
+		<db-attribute-pair source="id" target="membership_type_id"/>
+	</db-relationship>
+	<db-relationship name="data_type" source="OBJECT_PROPERTY" target="DATA_TYPE" toMany="false">
+		<db-attribute-pair source="data_type_id" target="id"/>
+	</db-relationship>
+	<db-relationship name="obejct_type" source="OBJECT_PROPERTY" target="OBJECT_TYPE" toMany="false">
+		<db-attribute-pair source="object_type_id" target="id"/>
+	</db-relationship>
+	<db-relationship name="referenced_object_type" source="OBJECT_PROPERTY" target="OBJECT_TYPE" toMany="false">
+		<db-attribute-pair source="referenced_object_type_id" target="id"/>
+	</db-relationship>
+	<db-relationship name="tree_node_member_leader" source="OBJECT_PROPERTY" target="TREE_NODE_MEMBER" toMany="true">
+		<db-attribute-pair source="id" target="leader_matching_object_property_id"/>
+	</db-relationship>
+	<db-relationship name="tree_node_member_member" source="OBJECT_PROPERTY" target="TREE_NODE_MEMBER" toMany="true">
+		<db-attribute-pair source="id" target="member_matching_object_property_id"/>
+	</db-relationship>
+	<db-relationship name="class_package" source="OBJECT_TYPE" target="CLASS_PACKAGE" toMany="false">
+		<db-attribute-pair source="class_package_id" target="id"/>
+	</db-relationship>
+	<db-relationship name="object_property" source="OBJECT_TYPE" target="OBJECT_PROPERTY" toMany="true">
+		<db-attribute-pair source="id" target="object_type_id"/>
+	</db-relationship>
+	<db-relationship name="object_property_referencer" source="OBJECT_TYPE" target="OBJECT_PROPERTY" toMany="true">
+		<db-attribute-pair source="id" target="referenced_object_type_id"/>
+	</db-relationship>
+	<db-relationship name="tree_node_member" source="OBJECT_TYPE" target="TREE_NODE_MEMBER" toMany="true">
+		<db-attribute-pair source="id" target="navigation_object_type_id"/>
+	</db-relationship>
+	<db-relationship name="tree_node_object_type" source="OBJECT_TYPE" target="TREE_NODE_IMPLEMENTATION" toMany="true">
+		<db-attribute-pair source="id" target="object_type_id"/>
+	</db-relationship>
+	<db-relationship name="component_factor" source="OPERATOR" target="COMPONENT_FACTOR" toMany="true">
+		<db-attribute-pair source="id" target="operator_id"/>
+	</db-relationship>
+	<db-relationship name="role_assignment" source="ROLE" target="ROLE_ASSIGNMENT" toMany="true">
+		<db-attribute-pair source="id" target="role_id"/>
+	</db-relationship>
+	<db-relationship name="role" source="ROLE_ASSIGNMENT" target="ROLE" toMany="false">
+		<db-attribute-pair source="role_id" target="id"/>
+	</db-relationship>
+	<db-relationship name="user" source="ROLE_ASSIGNMENT" target="USER" toMany="false">
+		<db-attribute-pair source="user_id" target="id"/>
+	</db-relationship>
+	<db-relationship name="entry" source="SOURCE_TYPE" target="ENTRY" toMany="true">
+		<db-attribute-pair source="id" target="source_type_id"/>
+	</db-relationship>
+	<db-relationship name="widget_type" source="SOURCE_TYPE" target="WIDGET_TYPE" toMany="true">
+		<db-attribute-pair source="id" target="source_type_id"/>
+	</db-relationship>
+	<db-relationship name="class_package" source="TREE_NODE_DEFINITION" target="CLASS_PACKAGE" toMany="false">
+		<db-attribute-pair source="class_package_id" target="id"/>
+	</db-relationship>
+	<db-relationship name="tree_node_object_type" source="TREE_NODE_DEFINITION" target="TREE_NODE_IMPLEMENTATION" toMany="true">
+		<db-attribute-pair source="id" target="tree_node_definition_id"/>
+	</db-relationship>
+	<db-relationship name="tree_structure" source="TREE_NODE_DEFINITION" target="TREE_STRUCTURE" toMany="false">
+		<db-attribute-pair source="tree_structure_id" target="id"/>
+	</db-relationship>
+	<db-relationship name="object_type" source="TREE_NODE_IMPLEMENTATION" target="OBJECT_TYPE" toMany="false">
+		<db-attribute-pair source="object_type_id" target="id"/>
+	</db-relationship>
+	<db-relationship name="tree_node_definition" source="TREE_NODE_IMPLEMENTATION" target="TREE_NODE_DEFINITION" toMany="false">
+		<db-attribute-pair source="tree_node_definition_id" target="id"/>
+	</db-relationship>
+	<db-relationship name="tree_node_member_leader" source="TREE_NODE_IMPLEMENTATION" target="TREE_NODE_MEMBER" toMany="true">
+		<db-attribute-pair source="id" target="leader_tree_node_implementation_id"/>
+	</db-relationship>
+	<db-relationship name="tree_node_member_member" source="TREE_NODE_IMPLEMENTATION" target="TREE_NODE_MEMBER" toMany="true">
+		<db-attribute-pair source="id" target="member_tree_node_implementation_id"/>
+	</db-relationship>
+	<db-relationship name="leader_matching_object_property" source="TREE_NODE_MEMBER" target="OBJECT_PROPERTY" toMany="false">
+		<db-attribute-pair source="leader_matching_object_property_id" target="id"/>
+	</db-relationship>
+	<db-relationship name="leader_tree_node_implementation" source="TREE_NODE_MEMBER" target="TREE_NODE_IMPLEMENTATION" toMany="false">
+		<db-attribute-pair source="leader_tree_node_implementation_id" target="id"/>
+	</db-relationship>
+	<db-relationship name="member_matching_object_property" source="TREE_NODE_MEMBER" target="OBJECT_PROPERTY" toMany="false">
+		<db-attribute-pair source="member_matching_object_property_id" target="id"/>
+	</db-relationship>
+	<db-relationship name="member_tree_node_implementation" source="TREE_NODE_MEMBER" target="TREE_NODE_IMPLEMENTATION" toMany="false">
+		<db-attribute-pair source="member_tree_node_implementation_id" target="id"/>
+	</db-relationship>
+	<db-relationship name="navigation_object_type" source="TREE_NODE_MEMBER" target="OBJECT_TYPE" toMany="false">
+		<db-attribute-pair source="navigation_object_type_id" target="id"/>
+	</db-relationship>
+	<db-relationship name="tree_node_definition" source="TREE_STRUCTURE" target="TREE_NODE_DEFINITION" toMany="true">
+		<db-attribute-pair source="id" target="tree_structure_id"/>
+	</db-relationship>
+	<db-relationship name="booking" source="USER" target="BOOKING" toMany="true">
+		<db-attribute-pair source="id" target="user_id"/>
+	</db-relationship>
+	<db-relationship name="role_assignment" source="USER" target="ROLE_ASSIGNMENT" toMany="true">
+		<db-attribute-pair source="id" target="user_id"/>
+	</db-relationship>
+	<db-relationship name="entry_since" source="VERSION" target="ENTRY" toMany="true">
+		<db-attribute-pair source="id" target="since_id"/>
+	</db-relationship>
+	<db-relationship name="entry_until" source="VERSION" target="ENTRY" toMany="true">
+		<db-attribute-pair source="id" target="until_id"/>
+	</db-relationship>
+	<db-relationship name="license_type" source="WIDGET_TYPE" target="LICENSE_TYPE" toMany="false">
+		<db-attribute-pair source="license_type_id" target="id"/>
+	</db-relationship>
+	<db-relationship name="source_type" source="WIDGET_TYPE" target="SOURCE_TYPE" toMany="false">
+		<db-attribute-pair source="source_type_id" target="id"/>
+	</db-relationship>
+	<obj-relationship name="creditCardType" source="Booking" target="CreditCardType" deleteRule="Nullify" db-relationship-path="credit_card_type"/>
+	<obj-relationship name="hotel" source="Booking" target="Hotel" deleteRule="Nullify" db-relationship-path="hotel"/>
+	<obj-relationship name="user" source="Booking" target="User" deleteRule="Nullify" db-relationship-path="user"/>
+	<obj-relationship name="objectType" source="ClassPackage" target="ObjectType" deleteRule="Deny" db-relationship-path="object_type"/>
+	<obj-relationship name="treeNodeDefinition" source="ClassPackage" target="TreeNodeDefinition" deleteRule="Deny" db-relationship-path="tree_node_definition"/>
+	<obj-relationship name="classificationArray" source="Classification" target="Classification" deleteRule="Deny" db-relationship-path="classificationArray"/>
+	<obj-relationship name="toClassification" source="Classification" target="Classification" deleteRule="Nullify" db-relationship-path="toClassification"/>
+	<obj-relationship name="componentFactor" source="Component" target="ComponentFactor" deleteRule="Deny" db-relationship-path="component_factor"/>
+	<obj-relationship name="componentMember" source="Component" target="ComponentMember" deleteRule="Deny" db-relationship-path="component_member"/>
+	<obj-relationship name="memberComponentMember" source="Component" target="ComponentMember" deleteRule="Deny" db-relationship-path="member_component_member"/>
+	<obj-relationship name="component" source="ComponentFactor" target="Component" deleteRule="Nullify" db-relationship-path="component"/>
+	<obj-relationship name="factor" source="ComponentFactor" target="Factor" deleteRule="Nullify" db-relationship-path="factor"/>
+	<obj-relationship name="operator" source="ComponentFactor" target="Operator" deleteRule="Nullify" db-relationship-path="operator"/>
+	<obj-relationship name="component" source="ComponentMember" target="Component" deleteRule="Nullify" db-relationship-path="component"/>
+	<obj-relationship name="memberComponent" source="ComponentMember" target="Component" deleteRule="Nullify" db-relationship-path="member_component"/>
+	<obj-relationship name="membershipType" source="ComponentMember" target="MembershipType" deleteRule="Nullify" db-relationship-path="membership_type"/>
+	<obj-relationship name="booking" source="CreditCardType" target="Booking" deleteRule="Deny" db-relationship-path="booking"/>
+	<obj-relationship name="objectProperty" source="DataType" target="ObjectProperty" deleteRule="Deny" db-relationship-path="object_property"/>
+	<obj-relationship name="children" source="Entry" target="Entry" deleteRule="Deny" db-relationship-path="children"/>
+	<obj-relationship name="entryType" source="Entry" target="EntryType" deleteRule="Nullify" db-relationship-path="entry_type"/>
+	<obj-relationship name="licenseType" source="Entry" target="LicenseType" deleteRule="Nullify" db-relationship-path="license_type"/>
+	<obj-relationship name="parent" source="Entry" target="Entry" deleteRule="Nullify" db-relationship-path="parent"/>
+	<obj-relationship name="sourceType" source="Entry" target="SourceType" deleteRule="Nullify" db-relationship-path="source_type"/>
+	<obj-relationship name="versionSince" source="Entry" target="Version" deleteRule="Nullify" db-relationship-path="version_since"/>
+	<obj-relationship name="versionUntil" source="Entry" target="Version" deleteRule="Nullify" db-relationship-path="version_until"/>
+	<obj-relationship name="entry" source="EntryType" target="Entry" deleteRule="Deny" db-relationship-path="entry"/>
+	<obj-relationship name="componentFactor" source="Factor" target="ComponentFactor" deleteRule="Deny" db-relationship-path="component_factor"/>
+	<obj-relationship name="factorMember" source="Factor" target="FactorMember" deleteRule="Deny" db-relationship-path="factor_member"/>
+	<obj-relationship name="memberFactorMember" source="Factor" target="FactorMember" deleteRule="Deny" db-relationship-path="member_factor_member"/>
+	<obj-relationship name="factor" source="FactorMember" target="Factor" deleteRule="Nullify" db-relationship-path="factor"/>
+	<obj-relationship name="memberFactor" source="FactorMember" target="Factor" deleteRule="Nullify" db-relationship-path="member_factor"/>
+	<obj-relationship name="membershipType" source="FactorMember" target="MembershipType" deleteRule="Nullify" db-relationship-path="membership_type"/>
+	<obj-relationship name="booking" source="Hotel" target="Booking" deleteRule="Deny" db-relationship-path="booking"/>
+	<obj-relationship name="entry" source="LicenseType" target="Entry" deleteRule="Deny" db-relationship-path="entry"/>
+	<obj-relationship name="componentMember" source="MembershipType" target="ComponentMember" deleteRule="Deny" db-relationship-path="component_member"/>
+	<obj-relationship name="factorMember" source="MembershipType" target="FactorMember" deleteRule="Deny" db-relationship-path="factor_member"/>
+	<obj-relationship name="dataType" source="ObjectProperty" target="DataType" deleteRule="Nullify" db-relationship-path="data_type"/>
+	<obj-relationship name="obejctType" source="ObjectProperty" target="ObjectType" deleteRule="Nullify" db-relationship-path="obejct_type"/>
+	<obj-relationship name="referencedObjectType" source="ObjectProperty" target="ObjectType" deleteRule="Nullify" db-relationship-path="referenced_object_type"/>
+	<obj-relationship name="treeNodeMemberLeader" source="ObjectProperty" target="TreeNodeMember" deleteRule="Deny" db-relationship-path="tree_node_member_leader"/>
+	<obj-relationship name="treeNodeMemberMember" source="ObjectProperty" target="TreeNodeMember" deleteRule="Deny" db-relationship-path="tree_node_member_member"/>
+	<obj-relationship name="classPackage" source="ObjectType" target="ClassPackage" deleteRule="Nullify" db-relationship-path="class_package"/>
+	<obj-relationship name="objectProperty" source="ObjectType" target="ObjectProperty" deleteRule="Deny" db-relationship-path="object_property"/>
+	<obj-relationship name="objectPropertyReferencer" source="ObjectType" target="ObjectProperty" deleteRule="Deny" db-relationship-path="object_property_referencer"/>
+	<obj-relationship name="treeNodeMember" source="ObjectType" target="TreeNodeMember" deleteRule="Deny" db-relationship-path="tree_node_member"/>
+	<obj-relationship name="treeNodeObjectType" source="ObjectType" target="TreeNodeImplementation" deleteRule="Deny" db-relationship-path="tree_node_object_type"/>
+	<obj-relationship name="componentFactor" source="Operator" target="ComponentFactor" deleteRule="Deny" db-relationship-path="component_factor"/>
+	<obj-relationship name="roleAssignment" source="Role" target="RoleAssignment" deleteRule="Deny" db-relationship-path="role_assignment"/>
+	<obj-relationship name="role" source="RoleAssignment" target="Role" deleteRule="Nullify" db-relationship-path="role"/>
+	<obj-relationship name="user" source="RoleAssignment" target="User" deleteRule="Nullify" db-relationship-path="user"/>
+	<obj-relationship name="entry" source="SourceType" target="Entry" deleteRule="Deny" db-relationship-path="entry"/>
+	<obj-relationship name="classPackage" source="TreeNodeDefinition" target="ClassPackage" deleteRule="Nullify" db-relationship-path="class_package"/>
+	<obj-relationship name="treeNodeObjectType" source="TreeNodeDefinition" target="TreeNodeImplementation" deleteRule="Deny" db-relationship-path="tree_node_object_type"/>
+	<obj-relationship name="treeStructure" source="TreeNodeDefinition" target="TreeStructure" deleteRule="Nullify" db-relationship-path="tree_structure"/>
+	<obj-relationship name="objectType" source="TreeNodeImplementation" target="ObjectType" deleteRule="Nullify" db-relationship-path="object_type"/>
+	<obj-relationship name="treeNodeDefinition" source="TreeNodeImplementation" target="TreeNodeDefinition" deleteRule="Nullify" db-relationship-path="tree_node_definition"/>
+	<obj-relationship name="treeNodeMemberLeader" source="TreeNodeImplementation" target="TreeNodeMember" deleteRule="Deny" db-relationship-path="tree_node_member_leader"/>
+	<obj-relationship name="treeNodeMemberMember" source="TreeNodeImplementation" target="TreeNodeMember" deleteRule="Deny" db-relationship-path="tree_node_member_member"/>
+	<obj-relationship name="leaderMatchingObjectProperty" source="TreeNodeMember" target="ObjectProperty" deleteRule="Nullify" db-relationship-path="leader_matching_object_property"/>
+	<obj-relationship name="leaderTreeNodeImplementation" source="TreeNodeMember" target="TreeNodeImplementation" deleteRule="Nullify" db-relationship-path="leader_tree_node_implementation"/>
+	<obj-relationship name="memberMatchingObjectProperty" source="TreeNodeMember" target="ObjectProperty" deleteRule="Nullify" db-relationship-path="member_matching_object_property"/>
+	<obj-relationship name="memberTreeNodeImplementation" source="TreeNodeMember" target="TreeNodeImplementation" deleteRule="Nullify" db-relationship-path="member_tree_node_implementation"/>
+	<obj-relationship name="navigationObjectType" source="TreeNodeMember" target="ObjectType" deleteRule="Nullify" db-relationship-path="navigation_object_type"/>
+	<obj-relationship name="treeNodeDefinition" source="TreeStructure" target="TreeNodeDefinition" deleteRule="Deny" db-relationship-path="tree_node_definition"/>
+	<obj-relationship name="booking" source="User" target="Booking" deleteRule="Deny" db-relationship-path="booking"/>
+	<obj-relationship name="roleAssignment" source="User" target="RoleAssignment" deleteRule="Deny" db-relationship-path="role_assignment"/>
+	<obj-relationship name="entrySince" source="Version" target="Entry" deleteRule="Deny" db-relationship-path="entry_since"/>
+	<obj-relationship name="entryUntil" source="Version" target="Entry" deleteRule="Deny" db-relationship-path="entry_until"/>
+	<obj-relationship name="licenseType" source="WidgetType" target="LicenseType" deleteRule="Nullify" db-relationship-path="license_type"/>
+	<obj-relationship name="sourceType" source="WidgetType" target="SourceType" deleteRule="Nullify" db-relationship-path="source_type"/>
+	<query name="CreditCardTypes" factory="org.apache.cayenne.map.SelectQueryBuilder" root="obj-entity" root-name="CreditCardType">
+		<property name="cayenne.GenericSelectQuery.cacheStrategy" value="SHARED_CACHE"/>
+	</query>
+	<query name="EntryTypes" factory="org.apache.cayenne.map.SelectQueryBuilder" root="obj-entity" root-name="EntryType">
+		<property name="cayenne.GenericSelectQuery.cacheStrategy" value="SHARED_CACHE"/>
+		<ordering><![CDATA[sortBy]]></ordering>
+	</query>
+	<query name="LicenseTypes" factory="org.apache.cayenne.map.SelectQueryBuilder" root="obj-entity" root-name="LicenseType">
+		<property name="cayenne.GenericSelectQuery.cacheStrategy" value="SHARED_CACHE"/>
+	</query>
+	<query name="MembershipTypes" factory="org.apache.cayenne.map.SelectQueryBuilder" root="obj-entity" root-name="MembershipType">
+		<property name="cayenne.GenericSelectQuery.cacheStrategy" value="SHARED_CACHE"/>
+	</query>
+	<query name="Operators" factory="org.apache.cayenne.map.SelectQueryBuilder" root="obj-entity" root-name="Operator">
+		<property name="cayenne.GenericSelectQuery.cacheStrategy" value="SHARED_CACHE"/>
+	</query>
+	<query name="SourceTypes" factory="org.apache.cayenne.map.SelectQueryBuilder" root="obj-entity" root-name="SourceType">
+		<property name="cayenne.GenericSelectQuery.cacheStrategy" value="SHARED_CACHE"/>
+		<ordering><![CDATA[sortBy]]></ordering>
+	</query>
+	<query name="TopComponents" factory="org.apache.cayenne.map.SQLTemplateBuilder" root="data-map" root-name="tap5cay3">
+		<property name="cayenne.GenericSelectQuery.fetchingDataRows" value="true"/>
+		<property name="cayenne.GenericSelectQuery.cacheStrategy" value="LOCAL_CACHE"/>
+		<property name="cayenne.GenericSelectQuery.cacheGroups" value="TopComponents"/>
+		<sql><![CDATA[select 
+t1.*
+from 
+component t1
+left join 
+component_member t2 
+on t1.id = t2.member_component_id
+where 
+t2.member_component_id is null
+order by
+t1.display_sequence
+;]]></sql>
+	</query>
+</data-map>

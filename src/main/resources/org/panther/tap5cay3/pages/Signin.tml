@@ -1,0 +1,42 @@
+<html t:type="layout" t:title="Tapestry5-hotel-booking Sign In"
+      t:pageTitle="Members login"
+      xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
+      xmlns:p="tapestry:parameter">
+
+	<form t:type="form" t:id="loginForm" class="full-form">
+		<t:errors />	
+		<table>
+			<tr>
+				<th>
+					<label t:type="label" t:for="username">username:</label>
+				</th>
+				<td>
+<!-- 					<input t:type="textfield" t:id="username" t:validate="username"/> -->
+					<input t:type="textfield" t:id="username"/>
+				</td>	
+			</tr>
+			<tr>
+				<th><label t:type="label" t:for="password">password:</label></th>
+<!-- 				<td><input type="password" t:type="passwordfield" t:id="password" t:validate="password"/></td> -->
+				<td><input type="password" t:type="passwordfield" t:id="password"/></td>
+			</tr>
+		</table>
+		
+		<div class="form-submit">
+			<input type="submit" value="Login" />
+		</div>
+		
+		<div class="member">Not a member yet? <t:pagelink page="SignUp">Register now!</t:pagelink></div>
+	 
+	</form>
+
+<!-- 	<p:sidebar> -->
+<!--         <p> -->
+<!--             Welcome to Tapestry Hotel Booking, this application has been developed to -->
+<!--             demonstrate the Tapestry's development model. This version of the application -->
+<!--             uses only Tapestry's core and tapx components, thus you will find here a *realistic* -->
+<!--             demonstration of Tapestry's power. -->
+<!--         </p> -->
+<!-- 	</p:sidebar> -->
+  
+</html>

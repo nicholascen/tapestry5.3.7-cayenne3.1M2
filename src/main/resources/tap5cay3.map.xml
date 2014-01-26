@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<data-map xmlns="http://cayenne.apache.org/schema/3.0/modelMap"
+	 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	 xsi:schemaLocation="http://cayenne.apache.org/schema/3.0/modelMap http://cayenne.apache.org/schema/3.0/modelMap.xsd"
+	 project-version="6">
+	<property name="defaultPackage" value="org.panther.tap5cay3.model"/>
+	<property name="defaultSchema" value="jboss"/>
+	<db-entity name="ROLE" schema="jboss">
+		<db-attribute name="description" type="VARCHAR" length="500"/>
+		<db-attribute name="enabled" type="BOOLEAN"/>
+		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="name" type="VARCHAR" isMandatory="true" length="50"/>
+	</db-entity>
+	<db-entity name="ROLE_ASSIGNMENT" schema="jboss">
+		<db-attribute name="description" type="VARCHAR" length="1000"/>
+		<db-attribute name="effective_date" type="DATE"/>
+		<db-attribute name="expiration_date" type="DATE"/>
+		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="role_id" type="INTEGER" isMandatory="true"/>
+		<db-attribute name="user_id" type="INTEGER" isMandatory="true"/>
+	</db-entity>
+	<db-entity name="USER" schema="jboss">
+		<db-attribute name="date_of_birth" type="DATE" isMandatory="true"/>
+		<db-attribute name="first_name" type="VARCHAR" isMandatory="true" length="25"/>
+		<db-attribute name="id" type="INTEGER" isPrimaryKey="true" isMandatory="true"/>
+		<db-attribute name="last_name" type="VARCHAR" isMandatory="true" length="25"/>
+		<db-attribute name="locked" type="BOOLEAN"/>
+		<db-attribute name="login_email" type="VARCHAR" isMandatory="true" length="40"/>
+		<db-attribute name="password" type="VARCHAR" isMandatory="true" length="20"/>
+	</db-entity>
+	<obj-entity name="Role" className="org.panther.tap5cay3.model.Role" dbEntityName="ROLE">
+		<obj-attribute name="description" type="java.lang.String" db-attribute-path="description"/>
+		<obj-attribute name="enabled" type="java.lang.Boolean" db-attribute-path="enabled"/>
+		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="id"/>
+		<obj-attribute name="name" type="java.lang.String" db-attribute-path="name"/>
+	</obj-entity>
+	<obj-entity name="RoleAssignment" className="org.panther.tap5cay3.model.RoleAssignment" dbEntityName="ROLE_ASSIGNMENT">
+		<obj-attribute name="description" type="java.lang.String" db-attribute-path="description"/>
+		<obj-attribute name="effectiveDate" type="java.util.Date" db-attribute-path="effective_date"/>
+		<obj-attribute name="expirationDate" type="java.util.Date" db-attribute-path="expiration_date"/>
+		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="id"/>
+	</obj-entity>
+	<obj-entity name="User" className="org.panther.tap5cay3.model.User" dbEntityName="USER">
+		<obj-attribute name="dateOfBirth" type="java.util.Date" db-attribute-path="date_of_birth"/>
+		<obj-attribute name="firstName" type="java.lang.String" db-attribute-path="first_name"/>
+		<obj-attribute name="id" type="java.lang.Integer" db-attribute-path="id"/>
+		<obj-attribute name="lastName" type="java.lang.String" db-attribute-path="last_name"/>
+		<obj-attribute name="locked" type="java.lang.Boolean" db-attribute-path="locked"/>
+		<obj-attribute name="loginEmail" type="java.lang.String" db-attribute-path="login_email"/>
+		<obj-attribute name="password" type="java.lang.String" db-attribute-path="password"/>
+	</obj-entity>
+	<db-relationship name="role_assignment" source="ROLE" target="ROLE_ASSIGNMENT" toMany="true">
+		<db-attribute-pair source="id" target="role_id"/>
+	</db-relationship>
+	<db-relationship name="role" source="ROLE_ASSIGNMENT" target="ROLE" toMany="false">
+		<db-attribute-pair source="role_id" target="id"/>
+	</db-relationship>
+	<db-relationship name="user" source="ROLE_ASSIGNMENT" target="USER" toMany="false">
+		<db-attribute-pair source="user_id" target="id"/>
+	</db-relationship>
+	<db-relationship name="role_assignment" source="USER" target="ROLE_ASSIGNMENT" toMany="true">
+		<db-attribute-pair source="id" target="user_id"/>
+	</db-relationship>
+	<obj-relationship name="roleAssignment" source="Role" target="RoleAssignment" deleteRule="Deny" db-relationship-path="role_assignment"/>
+	<obj-relationship name="role" source="RoleAssignment" target="Role" deleteRule="Nullify" db-relationship-path="role"/>
+	<obj-relationship name="user" source="RoleAssignment" target="User" deleteRule="Nullify" db-relationship-path="user"/>
+	<obj-relationship name="roleAssignment" source="User" target="RoleAssignment" deleteRule="Deny" db-relationship-path="role_assignment"/>
+</data-map>

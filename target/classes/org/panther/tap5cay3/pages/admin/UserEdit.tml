@@ -1,0 +1,19 @@
+<html t:type="layout" title="Edit"
+	  xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+      xmlns:p="tapestry:parameter">
+	<h1>Edit/Create/Update User</h1>
+	<div id="section">
+		<t:beaneditform t:id="form" 
+		object="user" 
+		exclude="snapshotVersion,persistenceState,id"
+		reorder="firstName,lastName,dateOfBirth,loginEmail,password,locked"
+		submitLabel="Save"
+		cancel="true">
+		<p:password>
+		      <t:label for="password"/>
+		      <t:passwordfield t:id="password" value="user.password"/>
+		 </p:password>
+		
+		</t:beaneditform>
+	</div>
+</html>

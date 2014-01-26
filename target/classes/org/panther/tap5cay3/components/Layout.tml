@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html 	xmlns="http://www.w3.org/1999/xhtml" 
+		xmlns:t="http://tapestry.apache.org/schema/tapestry_5_1_0.xsd"
+      	xmlns:p="tapestry:parameter">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>${message:applicationName} - ${title}</title>
+		<style type="text/css">
+		<t:delegate to="style" />
+	</style>
+</head>
+<body>
+<div id="wrap">
+	<div id="top">
+		<div style="float:left;" class="emblem">
+			<t:pagelink page="index" title="Return to Home page">
+				<span class="image-wrap" style="">
+					<img src="${context:layout/images/tapestry_s.png}" width="250" height="105" style="border: 0px solid black" />
+				</span>
+			</t:pagelink></div>
+			<div class="subtitle">${message:applicationSubtitle}
+				&#8230;<t:pagelink page="about"
+					style="text-decoration: none; font-style: italic"> ${message:learnMore}</t:pagelink>
+			</div>
+			<div class="message-box" id="messagebox">
+				<t:alerts />
+			</div>
+			
+	</div>
+	<div id="content">
+		<div class="header">
+			<h1><a href="#">${message:headerTitle}</a></h1>
+			<h2>${message:headerSubTitle}</h2>
+		</div>
+		
+		<div class="topnav">
+		<ul>
+<!-- 		<div class="topnav"><ul class="alternate" type="square"> -->
+			<li><A href="${message:TapestryDocUrl}" title="Index">Home</A></li>
+			<li><A href="${message:TapestryDocUrl}getting-started.html" title="Getting Started">Getting Started</A></li>
+			<li><A href="${message:TapestryDocUrl}documentation.html" title="Documentation">Documentation</A></li>
+			<li><A href="${message:TapestryDocUrl}download.html" title="Download">Download</A></li>
+			<li><A href="${message:TapestryDocUrl}about.html" title="About">About</A></li>
+		
+			<li><A href="${message:TapestryDocUrl}community.html" title="Community">Community</A></li>
+			<li><A href="http://www.apache.org/" class="external-link">Apache</A></li>
+			<li><A href="http://www.apache.org/foundation/sponsorship.html" class="external-link">Sponsorship</A></li>
+			<li><A href="http://www.apache.org/foundation/thanks.html" class="external-link">Thanks</A></li>
+		</ul>
+		</div>		
+		
+		<div class="breadcrumbs">
+			&middot; <t:pagelink page="admin/userListAdmin">User Admin</t:pagelink>	
+			&middot; <t:pagelink page="admin/roleListAdmin">Role Admin</t:pagelink>	
+			&middot; <t:pagelink page="roleEditableGrid">Role Editable Grid</t:pagelink>	
+			&middot; <t:pagelink page="RoAssEditableGrid">Role Assignment Editable Grid</t:pagelink>        	
+			&middot; <t:pagelink page="signOut">Sign Out</t:pagelink>	
+			&middot; 
+		</div>
+		
+		<div class="middle">
+<!-- 			<t:zcrumb.BreadCrumbsTrail /> -->
+			<t:body/>
+		</div>
+		<div id="clear"></div>
+	</div>
+	<div id="bottom"></div>
+</div>
+
+<div id="footer">
+Design by <a href="http://www.minimalistic-design.net">Minimalistic Design</a>
+</div>
+
+</body>
+</html>

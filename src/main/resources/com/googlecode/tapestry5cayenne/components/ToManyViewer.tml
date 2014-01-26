@@ -1,0 +1,12 @@
+<t:container xmlns:t="http://tapestry.apache.org/schema/tapestry_5_0_0.xsd">
+  <t:if test="smallEnough">
+    <ul class="t-cayenne-tomany-display">
+        <li t:type="loop" source="source" value="tmp">
+            ${stringFromTmp}
+        </li>
+    </ul>
+    <t:parameter name="else">
+      ${toManyString}
+    </t:parameter>
+  </t:if>
+</t:container>

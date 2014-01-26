@@ -3,7 +3,7 @@ on top of Tapestry 5.3.7 and Cayenne 3.1M2.
 
 The database information is encapsulated in the Cayenne project and mapping files cayenne-tap5cay3.xml and tap5cay3.map.xml.
 
-Cayenne Modeler is used define and maintain database and entity information.  Any database that Cayenne can connect to can be used.
+Cayenne Modeler is used to define and maintain database and entity information.  Any database that Cayenne can connect to can be used.
 
 Once you have the database/schema/tables created, run the user_load.sql to load the first user with which to login.
 

@@ -1,0 +1,1 @@
+Insert into "user" ("date_of_birth","first_name","id","last_name","locked","login_email","password") values ('2014-01-25','q',1,'q','true','q@q.com','q');
